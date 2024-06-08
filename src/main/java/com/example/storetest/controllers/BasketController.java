@@ -17,8 +17,9 @@ public class BasketController {
         this.basketService = basketService;
     }
 
+
     @RequestMapping(path = "/add")
-    public void add(@RequestParam("id") List<String> id) {
+    public void add(@RequestParam("id") List<Integer> id) {
         basketService.add(id);
     }
 

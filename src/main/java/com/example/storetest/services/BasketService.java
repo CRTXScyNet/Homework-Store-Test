@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface BasketService {
-    public void add(List<String> id);
+    public void add(List<Integer> id);
 
     public Map<Integer, Integer> get();
 

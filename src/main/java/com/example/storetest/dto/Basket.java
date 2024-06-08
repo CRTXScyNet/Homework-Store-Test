@@ -1,10 +1,9 @@
 package com.example.storetest.dto;
 
-import org.apache.commons.lang3.StringUtils;
+import com.example.storetest.castomExeptions.InvalidIdValueException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,16 +16,19 @@ public class Basket {
     public Basket() {
     }
 
-    public void add(List<String> id) {
-        for (String s :
-                id) {
-            if (StringUtils.isNumeric(s)) {
-                int i = Integer.parseInt(s);
+    public void add(List<Integer> id) {
+        for (Integer i : id) {
+            try {
+                if (i == null) {
+                    throw new InvalidIdValueException();
+                }
                 if (itemsInBasket.containsKey(i)) {
                     itemsInBasket.put(i, itemsInBasket.get(i) + 1);
                 } else {
                     itemsInBasket.put(i, 1);
                 }
+            } catch (InvalidIdValueException e) {
+                System.out.println("Id is incorrect");
             }
         }
     }
